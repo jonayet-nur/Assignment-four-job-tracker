@@ -23,5 +23,6 @@ if(id == 'interview-toggle-btn' ){
  filterSection.classList.remove('hidden');
  rejectRender()
 }
-
+updateJobProgress()
 }
+

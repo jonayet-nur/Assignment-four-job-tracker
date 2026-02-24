@@ -27,84 +27,19 @@ function totalCount(){
 }
 totalCount()
 
-
-// mainContainer.addEventListener("click" , function(event){
-//     // console.log(event.target)
-//     if(event.target.classList.contains('interview-btn')){
-//         const parenNode = event.target.parentNode.parentNode
-    
-//     // job: job-companies,job-title,job-info,job-status, job-description,interview-btn,reject-btn, card-right,
-//     const jobComapany = parenNode.querySelector('.job-companies').innerText;
-//     const jobTittle = parenNode.querySelector('.job-title').innerText;
-//     const jobInfo = parenNode.querySelector('.job-info').innerText;
-//     const jobStatus = parenNode.querySelector('.job-status').innerText;
-//     const jobDescription = parenNode.querySelector('.job-description').innerText;
-//      parenNode.querySelector('.job-status').innerText= 'interview'
-//     const cardInfo = {
-//         jobComapany,
-//         jobTittle,
-//         jobInfo,
-//         jobStatus : 'interview',
-//         jobDescription
-//     }
-//     const jobExit = interviewList.find(item => item.jobComapany == cardInfo.jobComapany);
-   
-//     if(!jobExit){
-//         interviewList.push(cardInfo)
-        
-//     }
-//     rejectedList = rejectedList.filter(item => item.jobComapany != cardInfo.jobComapany)
-//     if(currentStatus == 'rejected-toggle-btn'){
-//         rejectRender()
-//     }
-//     totalCount()
-//     // interviewRender()
-//     }else if(event.target.classList.contains('reject-btn')){
-//         const parenNode = event.target.parentNode.parentNode
-    
-//     // job: job-companies,job-title,job-info,job-status, job-description,interview-btn,reject-btn, card-right,
-//     const jobComapany = parenNode.querySelector('.job-companies').innerText;
-//     const jobTittle = parenNode.querySelector('.job-title').innerText;
-//     const jobInfo = parenNode.querySelector('.job-info').innerText;
-//     const jobStatus = parenNode.querySelector('.job-status').innerText;
-//     const jobDescription = parenNode.querySelector('.job-description').innerText;
-
-//      parenNode.querySelector('.job-status').innerText= 'reject'
-
-//     const cardInfo = {
-//         jobComapany,
-//         jobTittle,
-//         jobInfo,
-//         jobStatus : 'reject',
-//         jobDescription
-//     }
-//     const jobExit = rejectedList.find(item => item.jobComapany == cardInfo.jobComapany);
-   
-//     if(!jobExit){
-//         rejectedList.push(cardInfo)
-        
-//     }
-//    interviewList = interviewList.filter(item => item.jobComapany != cardInfo.jobComapany)
-//  if(currentStatus == 'interview-toggle-btn'){
-//     interviewRender();
-//  }
-//     totalCount()
-//     // rejectRender()
-//     }
-// })
-
 mainContainer.addEventListener("click" , function(event){
     // console.log(event.target)
     if(event.target.classList.contains('interview-btn')){
         const parenNode = event.target.parentNode.parentNode
     
-    // job: job-companies,job-title,job-info,job-status, job-description,interview-btn,reject-btn, card-right,
+    
     const jobComapany = parenNode.querySelector('.job-companies').innerText;
     const jobTittle = parenNode.querySelector('.job-title').innerText;
     const jobInfo = parenNode.querySelector('.job-info').innerText;
     const jobStatus = parenNode.querySelector('.job-status').innerText;
     const jobDescription = parenNode.querySelector('.job-description').innerText;
      parenNode.querySelector('.job-status').innerText= 'Interview'
+     updateAllCardStatus(jobComapany, 'Interview');
     const cardInfo = {
         jobComapany,
         jobTittle,
@@ -123,11 +58,13 @@ mainContainer.addEventListener("click" , function(event){
         rejectRender()
     }
     totalCount()
+
+    updateJobProgress()
     // interviewRender()
     }else if(event.target.classList.contains('reject-btn')){
-        const parenNode = event.target.parentNode.parentNode
+
+        const parenNode = event.target.parentNode.parentNode;
     
-    // job: job-companies,job-title,job-info,job-status, job-description,interview-btn,reject-btn, card-right,
     const jobComapany = parenNode.querySelector('.job-companies').innerText;
     const jobTittle = parenNode.querySelector('.job-title').innerText;
     const jobInfo = parenNode.querySelector('.job-info').innerText;
@@ -135,7 +72,7 @@ mainContainer.addEventListener("click" , function(event){
     const jobDescription = parenNode.querySelector('.job-description').innerText;
 
      parenNode.querySelector('.job-status').innerText= 'Reject'
-
+    updateAllCardStatus(jobComapany, 'Reject');
     const cardInfo = {
         jobComapany,
         jobTittle,
@@ -154,6 +91,8 @@ mainContainer.addEventListener("click" , function(event){
     interviewRender();
  }
     totalCount()
+
+    updateJobProgress()
     // rejectRender()
     }else if (event.target.closest('.card-right')) {
 
@@ -176,7 +115,7 @@ mainContainer.addEventListener("click" , function(event){
     // update counts
     totalCount();
 
-    // refresh filtered view if needed
+    
     interviewRender();
     rejectRender();
 }
@@ -238,5 +177,19 @@ function rejectRender(){
         ` 
         filterSection.appendChild(div)
     }
+}
+
+
+
+// jobstatus problem fixed korar jonno
+function updateAllCardStatus(companyName, status){
+    const allJobCards = allCards.querySelectorAll('.bg-white');
+
+    allJobCards.forEach(card => {
+        const name = card.querySelector('.job-companies').innerText;
+        if(name === companyName){
+            card.querySelector('.job-status').innerText = status;
+        }
+    });
 }
 
