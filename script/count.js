@@ -104,12 +104,12 @@ mainContainer.addEventListener("click" , function(event){
     const jobInfo = parenNode.querySelector('.job-info').innerText;
     const jobStatus = parenNode.querySelector('.job-status').innerText;
     const jobDescription = parenNode.querySelector('.job-description').innerText;
-     parenNode.querySelector('.job-status').innerText= 'interview'
+     parenNode.querySelector('.job-status').innerText= 'Interview'
     const cardInfo = {
         jobComapany,
         jobTittle,
         jobInfo,
-        jobStatus : 'interview',
+        jobStatus : 'Interview',
         jobDescription
     }
     const jobExit = interviewList.find(item => item.jobComapany == cardInfo.jobComapany);
@@ -134,13 +134,13 @@ mainContainer.addEventListener("click" , function(event){
     const jobStatus = parenNode.querySelector('.job-status').innerText;
     const jobDescription = parenNode.querySelector('.job-description').innerText;
 
-     parenNode.querySelector('.job-status').innerText= 'reject'
+     parenNode.querySelector('.job-status').innerText= 'Reject'
 
     const cardInfo = {
         jobComapany,
         jobTittle,
         jobInfo,
-        jobStatus : 'reject',
+        jobStatus : 'Reject',
         jobDescription
     }
     const jobExit = rejectedList.find(item => item.jobComapany == cardInfo.jobComapany);
@@ -192,10 +192,10 @@ function interviewRender(){
         div.innerHTML = `
          <div class="card-top space-y-5">
             <h2 class=" job-companies text-xl font-semibold"> ${interview.jobComapany} </h2>
-            <h5 class=" job-title text-neutral/50">React Native Developer</h5>
-            <p class=" job-info text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
+            <h5 class=" job-title text-neutral/50">${interview.jobTittle}</h5>
+            <p class=" job-info text-neutral/50">${interview.jobInfo}</p>
             <p class=" job-status inline-block px-4 py-2 rounded bg-blue-100 text-blue-700 text-xs font-semibold">${interview.jobStatus}</p>
-            <p class="job-description">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <p class="job-description">${interview.jobDescription}</p>
             <div class="flex gap-3">
                 <button class=" interview-btn  btn btn-sm btn-outline btn-success">Interview</button>
                 <button class=" reject-btn btn btn-sm btn-outline btn-error">Rejected</button>
@@ -222,10 +222,10 @@ function rejectRender(){
         div.innerHTML = `
          <div class="card-top space-y-5">
             <h2 class=" job-companies text-xl font-semibold"> ${reject.jobComapany} </h2>
-            <h5 class=" job-title text-neutral/50">React Native Developer</h5>
-            <p class=" job-info text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
+            <h5 class=" job-title text-neutral/50">${reject.jobTittle}</h5>
+            <p class=" job-info text-neutral/50">${reject.jobInfo}</p>
             <p class=" job-status inline-block px-4 py-2 rounded bg-blue-100 text-blue-700 text-xs font-semibold">${reject.jobStatus}</p>
-            <p class="job-description">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <p class="job-description">${reject.jobDescription}</p>
             <div class="flex gap-3">
                 <button class=" interview-btn  btn btn-sm btn-outline btn-success">Interview</button>
                 <button class=" reject-btn btn btn-sm btn-outline btn-error">Rejected</button>
