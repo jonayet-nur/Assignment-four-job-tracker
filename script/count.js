@@ -38,16 +38,16 @@ mainContainer.addEventListener("click" , function(event){
     const jobInfo = parenNode.querySelector('.job-info').innerText;
     const jobStatus = parenNode.querySelector('.job-status').innerText;
     const jobDescription = parenNode.querySelector('.job-description').innerText;
-
+     parenNode.querySelector('.job-status').innerText= 'interview'
     const cardInfo = {
         jobComapany,
         jobTittle,
         jobInfo,
-        jobStatus,
+        jobStatus : 'interview',
         jobDescription
     }
     const jobExit = interviewList.find(item => item.jobComapany == cardInfo.jobComapany);
-    parenNode.querySelector('.job-status').innerText= 'interview'
+   
     if(!jobExit){
         interviewList.push(cardInfo)
         // console.log(interviewList);
@@ -66,10 +66,10 @@ function interviewRender(){
     div.className ="bg-white border border-gray-200 shadow-sm p-8 rounded-md flex justify-between hover:shadow-lg mb-4"
         div.innerHTML = `
          <div class="card-top space-y-5">
-            <h2 class=" job-companies text-xl font-semibold">Mobile First Corp</h2>
+            <h2 class=" job-companies text-xl font-semibold"> ${interview.jobComapany} </h2>
             <h5 class=" job-title text-neutral/50">React Native Developer</h5>
             <p class=" job-info text-neutral/50">Remote • Full-time • $130,000 - $175,000</p>
-            <p class=" job-status inline-block px-4 py-2 rounded bg-blue-100 text-blue-700 text-xs font-semibold">Not Applied</p>
+            <p class=" job-status inline-block px-4 py-2 rounded bg-blue-100 text-blue-700 text-xs font-semibold">${interview.jobStatus}</p>
             <p class="job-description">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
             <div class="flex gap-3">
                 <button class=" interview-btn  btn btn-sm btn-outline btn-success">Interview</button>
