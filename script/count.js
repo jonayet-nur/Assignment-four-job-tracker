@@ -110,7 +110,7 @@ mainContainer.addEventListener("click" , function(event){
         item => item.jobComapany !== jobCompany
     );
 
-    // remove from ALL cards 
+    // remove from All cards 
     const allJobCards = allCards.querySelectorAll('.bg-white');
     allJobCards.forEach(cards => {
         const name = cards.querySelector('.job-companies').innerText;
@@ -119,7 +119,7 @@ mainContainer.addEventListener("click" , function(event){
         }
     });
 
-    // re-render only current card
+    //  only current card  find
     if(currentStatus === 'interview-toggle-btn'){
         interviewRender();
     }else if(currentStatus === 'rejected-toggle-btn'){

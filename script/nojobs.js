@@ -1,5 +1,5 @@
   
-//  Interview Render Fixed no jobs card
+//  Interview render fixed no jobs card
 
 function interviewRender() {
     filterSection.innerHTML = '';
@@ -46,7 +46,7 @@ function interviewRender() {
     }
 }
 
-//  Rejected Render Fixed no jobs card 
+//  Rejected render fixed no jobs card 
 function rejectRender() {
     filterSection.innerHTML = '';
 
@@ -94,7 +94,7 @@ function rejectRender() {
 
 
 
-// out of  8 jobs count korar jonno 
+// out of  8 jobs count slove  
 const jobProgress = document.getElementById('job-progress');
 function updateJobProgress(){
     const totalJobs = allCards.children.length;
