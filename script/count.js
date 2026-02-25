@@ -30,8 +30,9 @@ totalCount()
 mainContainer.addEventListener("click" , function(event){
     // console.log(event.target)
     if(event.target.classList.contains('interview-btn')){
-        const parenNode = event.target.parentNode.parentNode
-    
+        const parenNode = event.target.parentNode.parentNode;
+        
+       
     
     const jobComapany = parenNode.querySelector('.job-companies').innerText;
     const jobTittle = parenNode.querySelector('.job-title').innerText;
@@ -95,29 +96,38 @@ mainContainer.addEventListener("click" , function(event){
     updateJobProgress()
     // rejectRender()
     }else if (event.target.closest('.card-right')) {
+    event.stopPropagation();
 
     const card = event.target.closest('.bg-white');
     const jobCompany = card.querySelector('.job-companies').innerText;
 
-    // remove from interview list
+    // remove from interview and rejected list
     interviewList = interviewList.filter(
         item => item.jobComapany !== jobCompany
     );
 
-    // remove from rejected list
     rejectedList = rejectedList.filter(
         item => item.jobComapany !== jobCompany
     );
 
-    // remove card from DOM
-    card.remove();
+    // remove from ALL cards 
+    const allJobCards = allCards.querySelectorAll('.bg-white');
+    allJobCards.forEach(cards => {
+        const name = cards.querySelector('.job-companies').innerText;
+        if(name === jobCompany){
+            cards.remove();
+        }
+    });
 
-    // update counts
+    // re-render only current card
+    if(currentStatus === 'interview-toggle-btn'){
+        interviewRender();
+    }else if(currentStatus === 'rejected-toggle-btn'){
+        rejectRender();
+    }
+
     totalCount();
-
-    
-    interviewRender();
-    rejectRender();
+    updateJobProgress();
 }
 })
 
@@ -157,7 +167,7 @@ function rejectRender(){
     for(let reject of rejectedList){
         // console.log(interview)
         let div = document.createElement('div');
-    div.className ="bg-white border border-gray-200 shadow-sm p-8 rounded-md flex justify-between hover:shadow-lg mb-4"
+    div.className ="bg-white border border-gray-200 shadow-sm p-8 rounded-md flex justify-between hover:shadow-lg mb-4 "
         div.innerHTML = `
          <div class="card-top space-y-5">
             <h2 class=" job-companies text-xl font-semibold"> ${reject.jobComapany} </h2>
